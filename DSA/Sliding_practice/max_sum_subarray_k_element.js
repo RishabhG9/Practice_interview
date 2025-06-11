@@ -1,7 +1,8 @@
 /**
  * Maximum Sum of a Subarray with K Elements
  * 
- * 1. Given an array and an integer k, we need to calculate the maximum sum of a subarray having size exactly k.
+ * 1. Given an array and an integer k, we need to calculate the maximum sum of a 
+ *  subarray having size exactly k.
  */
 
 // let arr = [100, 200, 300, 400], k = 2

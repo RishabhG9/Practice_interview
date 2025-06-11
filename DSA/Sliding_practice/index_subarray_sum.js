@@ -18,17 +18,22 @@ let arr = [5, 3, 4], target = 2
 const findIndexSubarray = (arr, target) => {
   let sum = arr[0], startIndex = 0;
   for (let i = 1; i < arr.length; i++) {
-    if (sum == target) {
+    if (sum == target) { // checking the sum and target is matched or not
       return [startIndex + 1, i]
-    } else if (sum < target) {
+    } else if (sum < target) { // if sum is less than target than adding first element
       sum += arr[i]
       continue
     } else if (sum > target) {
+      /**
+       * if sum is greater than target than removing first element and incrementing 
+       * its count addition to this we have to stop increment of i variable
+       */
       sum = sum - arr[startIndex++];
       i--;
       continue
     }
   }
+  // this is where no condition matched no subarray found which is matching given sum
   return [-1]
 }
 
