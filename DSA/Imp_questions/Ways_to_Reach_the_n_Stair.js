@@ -7,6 +7,9 @@
  * 
  */
 
+// this is Optimal Approach using DP, where remmembering the steps which will not occur 
+// again we will just return it directly if its already visited
+
 const countWays = (n, memo) => {
   if (n <= 1) {
     return 1
@@ -23,4 +26,20 @@ const countWays = (n, memo) => {
 const n = 5;
 let memo = Array(n + 1).fill(-1)
 
-console.log("Countways", countWays(n, memo)); 
+console.log("Countways", countWays(n, memo));
+
+
+
+// NORMAL APPROACH
+
+const normalCountWays = (k) => {
+  if (k <= 1) {
+    return 1
+  }
+
+  return normalCountWays(k - 1) + normalCountWays(k - 2)
+}
+
+const k = 5;
+
+console.log("Countways normal approach", normalCountWays(k)); 
