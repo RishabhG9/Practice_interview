@@ -8,6 +8,8 @@ npx tailwindcss-cli@latest init -p
 npx tailwindcss init
 
 ## Update tailwind.config.ts:
+```
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,6 +20,8 @@ module.exports = {
   },
   plugins: [],
 }
+
+```
 
 ## Update src/index.css:
 ### include in the index.css
