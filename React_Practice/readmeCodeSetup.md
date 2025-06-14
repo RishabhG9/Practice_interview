@@ -2,10 +2,12 @@
 npx create-react-app my-app --template typescript
 
 # 2. Install TailwindCSS
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+npm install -D tailwindcss autoprefixer
+npx tailwindcss-cli@latest init -p 
+## or 
+npx tailwindcss init
 
-## Update tailwind.config.js:
+## Update tailwind.config.ts:
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,6 +20,7 @@ module.exports = {
 }
 
 ## Update src/index.css:
+### include in the index.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
