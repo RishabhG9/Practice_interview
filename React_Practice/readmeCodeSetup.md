@@ -1,11 +1,11 @@
-### Create React App 
+# 1. Create React App 
 npx create-react-app my-app --template typescript
 
-### Install TailwindCSS
+# 2. Install TailwindCSS
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
-# Update tailwind.config.js:
+## Update tailwind.config.js:
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -17,15 +17,15 @@ module.exports = {
   plugins: [],
 }
 
-# Update src/index.css:
+## Update src/index.css:
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-###  3. Install Redux Toolkit and Axios
+#  3. Install Redux Toolkit and Axios
 npm install @reduxjs/toolkit react-redux axios
 
-### 4. Folder Structure
+# 4. Folder Structure
 src/
 ├── app/
 │   └── store.ts
@@ -38,7 +38,7 @@ src/
 ├── App.tsx
 ├── index.tsx
 
-###  5. Redux Store Setup
+#  5. Redux Store Setup
 import { configureStore } from '@reduxjs/toolkit'
 import exampleReducer from '../features/example/exampleSlice'
 
@@ -51,8 +51,8 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
-### 6. Example Slice
-# src/features/example/exampleSlice.ts
+# 6. Example Slice
+### src/features/example/exampleSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface ExampleState {
@@ -83,8 +83,8 @@ export const { increment, decrement, incrementByAmount } = exampleSlice.actions
 export default exampleSlice.reducer
 
 
-### 7. Hooking Redux in Entry
-# src/index.tsx
+# 7. Hooking Redux in Entry
+### src/index.tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -111,8 +111,8 @@ const api = axios.create({
 
 export default api
 
-###  9. Example Component Using Redux
-# src/features/example/ExampleComponent.tsx
+#  9. Example Component Using Redux
+### src/features/example/ExampleComponent.tsx
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../app/store'
@@ -146,8 +146,8 @@ const ExampleComponent = () => {
 export default ExampleComponent
 
 
-### 10. Use in App
-# src/App.tsx
+# 10. Use in App
+### src/App.tsx
 import React from 'react'
 import ExampleComponent from './features/example/ExampleComponent'
 
@@ -164,8 +164,8 @@ export default App
 
 
 
-### DONE
-# ⚛️ React + TypeScript
-# 🎨 TailwindCSS for styling + responsive design
-# 🧠 Redux Toolkit for state management
-# 🌐 Axios for API calls
+# DONE
+## ⚛️ React + TypeScript
+## 🎨 TailwindCSS for styling + responsive design
+## 🧠 Redux Toolkit for state management
+## 🌐 Axios for API calls
