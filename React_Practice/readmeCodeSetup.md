@@ -1,15 +1,21 @@
 # 1. Create React App 
+```
 npx create-react-app my-app --template typescript
+```
 
 # 2. Install TailwindCSS
+```
 npm install -D tailwindcss autoprefixer
 npx tailwindcss-cli@latest init -p 
+```
+
 ## or 
+```
 npx tailwindcss init
+```
 
 ## Update tailwind.config.ts:
 ```
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -20,19 +26,23 @@ module.exports = {
   },
   plugins: [],
 }
-
 ```
 
 ## Update src/index.css:
 ### include in the index.css
+```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+```
 
 #  3. Install Redux Toolkit and Axios
+```
 npm install @reduxjs/toolkit react-redux axios
+```
 
 # 4. Folder Structure
+```
 src/
 ├── app/
 │   └── store.ts
@@ -44,8 +54,10 @@ src/
 │   └── api.ts
 ├── App.tsx
 ├── index.tsx
+```
 
 #  5. Redux Store Setup
+```
 import { configureStore } from '@reduxjs/toolkit'
 import exampleReducer from '../features/example/exampleSlice'
 
@@ -57,9 +69,11 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+```
 
 # 6. Example Slice
 ### src/features/example/exampleSlice.ts
+```
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface ExampleState {
@@ -88,10 +102,11 @@ const exampleSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = exampleSlice.actions
 export default exampleSlice.reducer
-
+```
 
 # 7. Hooking Redux in Entry
 ### src/index.tsx
+```
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -117,9 +132,11 @@ const api = axios.create({
 })
 
 export default api
+```
 
 #  9. Example Component Using Redux
 ### src/features/example/ExampleComponent.tsx
+```
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../app/store'
@@ -151,10 +168,11 @@ const ExampleComponent = () => {
 }
 
 export default ExampleComponent
-
+```
 
 # 10. Use in App
 ### src/App.tsx
+```
 import React from 'react'
 import ExampleComponent from './features/example/ExampleComponent'
 
@@ -168,8 +186,7 @@ function App() {
 }
 
 export default App
-
-
+```
 
 # DONE
 ## ⚛️ React + TypeScript
