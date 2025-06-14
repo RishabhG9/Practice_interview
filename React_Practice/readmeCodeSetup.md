@@ -189,7 +189,7 @@ export default App
 ```
 
 # DONE
-## ⚛️ React + TypeScript
-## 🎨 TailwindCSS for styling + responsive design
-## 🧠 Redux Toolkit for state management
-## 🌐 Axios for API calls
+### ⚛️ React + TypeScript
+### 🎨 TailwindCSS for styling + responsive design
+### 🧠 Redux Toolkit for state management
+### 🌐 Axios for API calls
