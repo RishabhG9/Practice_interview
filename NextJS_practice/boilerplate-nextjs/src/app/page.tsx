@@ -1,4 +1,6 @@
+import { ROUTES } from "@/Routes/Routes";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -101,7 +103,7 @@ export default function Home() {
         </footer>
       </div>
       <div>
-        <h1>Welcome to Meals App</h1>
+        <Link href={ROUTES.MEALS}>Welcome to Meals App</Link>
       </div>
     </>
   );

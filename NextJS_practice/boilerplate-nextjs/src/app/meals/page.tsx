@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MealLink } from "./components/MealLink";
+import { MealDetailPageComponent } from "../../PageComponents/MealComponents/MealDetailPageComponent";
 
 interface Meal {
   idMeal: string;
@@ -18,7 +18,7 @@ export default async function MealsPage() {
         {meals.map((meal) => (
           <li key={meal.idMeal}>
             {/* <Link href={`/meals/${meal.idMeal}`}>{meal.strMeal}</Link> */}
-            <MealLink id={meal.idMeal} name={meal.strMeal} />
+            <MealDetailPageComponent id={meal.idMeal} name={meal.strMeal} />
           </li>
         ))}
       </ul>
