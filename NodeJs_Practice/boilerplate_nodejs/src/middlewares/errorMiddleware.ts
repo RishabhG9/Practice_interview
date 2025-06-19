@@ -13,10 +13,12 @@ export const errorMiddleware: ErrorRequestHandler = (
       message: err.message,
       errors: err.errors || null
     });
+    return 
   }
 
   res.status(500).json({
     success: false,
     message: 'Internal Server Error',
+    error: err.message || 'Unknown error',
   });
 };

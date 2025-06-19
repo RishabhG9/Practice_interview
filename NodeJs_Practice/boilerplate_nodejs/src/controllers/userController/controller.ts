@@ -19,3 +19,13 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     user: { id, active },
   });
 };
+
+export const registerUser = async (req: Request, res: Response): Promise<void> => {
+  const { name, email } = req.body;
+
+  res.status(201).json({
+    success: true,
+    message: 'User registered successfully',
+    user: { name, email }
+  });
+};

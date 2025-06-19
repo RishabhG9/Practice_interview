@@ -11,10 +11,14 @@ type ValidateOptions = {
 export const validateRequest = (schemas: ValidateOptions) => {
   return (req: Request, _res: Response, next: NextFunction): void => {
     try {
-      if (schemas.body) {
+      if (schemas?.body) {
         const result = schemas.body.safeParse(req.body);
         if (!result.success) {
-          return next(new AppError('Request body validation failed', 400, result.error.flatten().fieldErrors));
+          const errors = result.error.errors.map(err => ({
+            path: err.path.join('.') || 'body',
+            message: err.message,
+          }));
+          return next(new AppError('Request body validation failed', 400, errors));
         }
       }
 
