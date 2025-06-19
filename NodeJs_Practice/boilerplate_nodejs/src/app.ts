@@ -1,7 +1,5 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors';
-import helmet from 'helmet';
 import { registerRoutes } from './routes';
 import { registerGlobalMiddleware } from './middlewares';
 

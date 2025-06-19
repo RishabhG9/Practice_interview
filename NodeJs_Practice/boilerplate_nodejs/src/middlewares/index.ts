@@ -24,6 +24,6 @@ export const registerGlobalMiddleware = (app: Express): void => {
    * So Helmet is like a security guard that sets protective headers on every response
    */
   app.use(errorMiddleware);
-  app.use(authMiddleware);
-  app.use(loggerMiddleware);
+  // app.use(authMiddleware);
+  // app.use(loggerMiddleware);
 };
