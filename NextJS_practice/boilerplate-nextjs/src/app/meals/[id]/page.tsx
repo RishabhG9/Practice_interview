@@ -1,22 +1,27 @@
-interface Props {
-  params: { id: string };
-}
+'use client';
 
-interface MealDetail {
-  strMeal: string;
-  strInstructions: string;
-  strMealThumb: string;
-}
+import { fetchMealDetail } from "@/provider/action/meals/meals";
+import { selectError, selectLoading, selectMealDetail } from "@/provider/selector/meals/meals";
+import { AppDispatch } from "@/store";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export default async function MealDetailPage({ params }: Props) {
-  const { id } = params;
-  const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-  const data = await res.json();
-  const meal: MealDetail = data?.meals?.[0];
+export default function MealDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const dispatch = useDispatch<AppDispatch>();
 
-  if (!meal) {
-    return <div>Meal not Found.</div>
-  }
+  const meal = useSelector(selectMealDetail);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (id) dispatch(fetchMealDetail(id));
+  }, [dispatch, id]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!meal) return <p>Meal not found.</p>;
 
   return (
     <div>

@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: MealsState = {
   meals: [],
+  mealDetail: null,
   loading: false,
   error: null,
 };
@@ -14,6 +15,9 @@ const mealsReducer = createSlice({
     setMeals: (state, action: PayloadAction<Meal[]>) => {
       state.meals = action.payload;
     },
+    setMealDetail: (state, action: PayloadAction<Meal | null>) => {
+      state.mealDetail = action.payload;
+    },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
@@ -23,5 +27,5 @@ const mealsReducer = createSlice({
   },
 });
 
-export const { setMeals, setLoading, setError } = mealsReducer.actions;
+export const { setMeals, setMealDetail, setLoading, setError } = mealsReducer.actions;
 export default mealsReducer.reducer;
