@@ -9,9 +9,14 @@ interface MealDetail {
 }
 
 export default async function MealDetailPage({ params }: Props) {
-  const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.id}`);
+  const { id } = params;
+  const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
   const data = await res.json();
-  const meal: MealDetail = data.meals[0];
+  const meal: MealDetail = data?.meals?.[0];
+
+  if (!meal) {
+    return <div>Meal not Found.</div>
+  }
 
   return (
     <div>

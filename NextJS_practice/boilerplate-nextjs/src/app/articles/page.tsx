@@ -1,4 +1,4 @@
-import { ROUTES } from "@/Routes/Routes";
+import { ROUTES } from "@/routes/Routes";
 import Link from "next/link";
 import { Article } from "./type/type";
 
