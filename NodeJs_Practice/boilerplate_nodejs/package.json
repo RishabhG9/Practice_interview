@@ -7,8 +7,9 @@
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "dbPull": "npx prisma db pull",
-    "prismaClient": "npx prisma generate"
+    "prismaDbPull": "npx prisma db pull",
+    "prismaClient": "npx prisma generate",
+    "generate:models": "ts-node src/scripts/generateModels.ts"
   },
   "keywords": [],
   "author": "",
