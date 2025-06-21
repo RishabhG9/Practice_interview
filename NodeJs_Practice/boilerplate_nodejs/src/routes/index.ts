@@ -1,8 +1,8 @@
 import { Express } from 'express';
-import { userRoutes } from './userRoutes/routes';
+import { usersRoutes } from './usersRoutes/usersRoutes';
 
 export const registerRoutes = (app: Express): void => {
-  app.use('/api/users', userRoutes);
+  app.use('/api/users', usersRoutes);
 
   // You can keep adding more like this:
   // app.use('/api/auth', authRoutes);
