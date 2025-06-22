@@ -19,7 +19,13 @@ export const registerUser = async (name: string, email_id: string) => {
     throw new AppError('Email already registered', 409);
   }
 
-  const user = await usersModel.createUser(name, email_id);
+  const data = {
+    name,
+    email_id
+  }
+  const user = await usersModel.create(data);
+
+  // const user = await usersModel.createUser(name, email_id);
   return user;
 };
 
