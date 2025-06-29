@@ -37,7 +37,7 @@ console.log("Result after rest", result2);
  */
 
 
-var names = ["a", "b", "c"];
+var names = ["a", "b", "c", "d", "e"];
 function getNames(name1, name2, name3) {
   console.log(name1, name2, name3)
 }

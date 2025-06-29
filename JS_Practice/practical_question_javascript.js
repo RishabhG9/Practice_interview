@@ -221,3 +221,41 @@ console.log([] == []);
  * */
 
 console.log("QUESTION9")
+
+/**
+ * Question 10
+ * 
+ * Can you write a higher-order function that repeats a function n times?
+ */
+
+function repeat(fn, n) {
+  return function (x) {
+    for (let i = 0; i < n; i++) {
+      x = fn(x);
+    }
+    return x;
+  }
+}
+
+const double = n => n * 2;
+const repeatDouble = repeat(double, 3);
+console.log(repeatDouble(2)); // 16  (2*2*2*2)
+
+
+/**
+ * Question 11
+ * 
+ * Write a function sleep(ms) that waits for ms milliseconds using a promise and async/await.
+ */
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function run() {
+  console.log("Start");
+  await sleep(2000);
+  console.log("2 seconds later");
+}
+
+run();

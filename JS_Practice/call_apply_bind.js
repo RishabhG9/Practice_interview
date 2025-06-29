@@ -17,7 +17,7 @@ let userDetails = {
   age: 28,
   designation: "Software Engineer",
   printDetails: function () {
-    console.log(this.name) //this keyword is used for self references
+    console.log(this.name) // this keyword is used for self references
   }
 }
 
