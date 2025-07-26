@@ -31,7 +31,8 @@ let userDetails2 = {
   //  we can resolve it using call function
 }
 
-// userDetails.printDetails.call(userDetails2) // but after using call and passing the object reference now this printDetail function is taking referece from UserDetails2 object 
+// userDetails.printDetails.call(userDetails2) // but after using call and passing the object reference now this printDetail 
+// function is taking referece from UserDetails2 object 
 
 //NOW LET TTAKE SCENERIO IF WE ARE TAKING GENERIC FUNCTION RATHER THAN OBJECT SPECIFIC OR OBJECT METHOD
 
