@@ -34,7 +34,7 @@ let userDetails2 = {
 // userDetails.printDetails.call(userDetails2) // but after using call and passing the object reference now this printDetail 
 // function is taking referece from UserDetails2 object 
 
-//NOW LET TTAKE SCENERIO IF WE ARE TAKING GENERIC FUNCTION RATHER THAN OBJECT SPECIFIC OR OBJECT METHOD
+//NOW LET TAKE SCENERIO IF WE ARE TAKING GENERIC FUNCTION RATHER THAN OBJECT SPECIFIC OR OBJECT METHOD
 
 let student1 = {
   name: "Ramu",
@@ -46,6 +46,12 @@ let student2 = {
   name: "Shamu",
   age: 35,
   designation: "Software Engineer 3",
+}
+
+let student3 = {
+  name: "Kamu",
+  age: 38,
+  designation: "Software Engineer 2",
 }
 
 let printDetailsNew = function (state, country) {
@@ -70,4 +76,6 @@ printDetailsNew.apply(student2, ["Mumbai", "India"])
  */
 
 let newFun = printDetailsNew.bind(student2, "Mumbai", "India")
-newFun();   //Shamu Mumbai India
+let newFun2 = printDetailsNew.bind(student3, 'Pune', 'India')
+newFun();   // Shamu Mumbai India
+newFun2(); // Kamu Pune India
