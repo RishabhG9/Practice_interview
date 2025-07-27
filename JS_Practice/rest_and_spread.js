@@ -24,6 +24,8 @@ function addNumber2(a, b, c, ...others) { //rest operator came from es6 version
   return a + b + c
 }
 
+// Rest [7,8,9,10]
+
 const result2 = addNumber2(4, 5, 6, 7, 8, 9, 10)
 console.log("Result after rest", result2);
 
@@ -67,7 +69,7 @@ var students = {
 // console.log(rest) // { name: 'Rishabh', age: '28', hobbies: [ 'Games', 'football' ] }
 
 
-// chnage the age of new student object and keep everything same using spread operator
+// change the age of new student object and keep everything same using spread operator
 const newStudent = {
   ...students,
   age: 30
