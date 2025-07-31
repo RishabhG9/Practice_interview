@@ -136,15 +136,35 @@ Allows URL updates without re-running data fetching methods like `getServerSideP
 
 ### 1. How to optimize deeply nested state updates in React?
 
-Use `useReducer` instead of multiple `useState` calls for complex state. Normalize deeply nested state. Use memoized selectors or Zustand for state slicing. Avoid prop drilling with Context API.
+When state is deeply nested (e.g., user.profile.settings.theme.color), updates can trigger unnecessary re-renders. Use `useReducer` instead of multiple `useState` calls for complex state. Normalize deeply nested state. Use memoized selectors or Zustand for state slicing. Avoid prop drilling with Context API.
+
+Optimization strategies:
+- ✅ Use useReducer: More manageable for complex, nested updates.
+- ✅ Normalize the state: Flatten nested structures like Redux does — store by ID.
+- ✅ Avoid prop drilling: Use Context API or a state manager like Zustand/Redux.
+- ✅ Memoize selectors: Use useMemo or libraries like reselect to avoid recalculating derived data.
+- ✅ Split components: Lift deeply nested components into their own memoized containers.
 
 ### 2. How does React Reconciliation work internally?
 
 React maintains a virtual DOM and compares it with the previous virtual DOM tree using a diffing algorithm. It identifies changes (additions, deletions, updates) and efficiently patches only the changed nodes into the real DOM.
+- React keeps a virtual DOM tree.
+- On state/prop changes, it creates a new virtual DOM.
+- Then it diffs the old and new virtual DOMs, identifying changes.
+- Changes are batched and committed efficiently to the real DOM.
+- Keys (key prop) help React track which elements changed, improving performance.
+- Example: If you reorder a list without keys, React re-renders all items. With keys, it knows what changed.
 
 ### 3. Multi-language (i18n) and SEO-optimized Next.js app:
 
 Use `next-i18next` for translation. Generate localized routes (`/en`, `/fr`). Use `getStaticProps` with i18n files. Add SEO-friendly meta tags and hreflang headers for crawlers.
+- ✅ Use next-i18next or next-intl to manage translations.
+- ✅ Structure translation files like /locales/en/common.json, /locales/fr/common.json.
+- ✅ Localize routes: /en/about, /fr/about.
+- ✅ Use getStaticProps to pre-render translated content.
+- ✅ Add SEO elements:
+- <html lang="en">, dynamic titles and meta descriptions.
+- hreflang tags in <head> for search engines.
 
 ### 4. Prevent layout shifts and improve CLS:
 
@@ -164,6 +184,20 @@ Use `next-i18next` for translation. Generate localized routes (`/en`, `/fr`). Us
 ### 6. Server-side caching in Next.js:
 
 Implement HTTP caching via headers (`Cache-Control`, `ETag`). Use Redis or in-memory caches. Middleware can short-circuit requests if cached. Use ISR for automatic regeneration of stale pages.
+- Set Cache-Control headers: max-age, s-maxage, stale-while-revalidate.
+- Use middleware to check for cached responses.
+- Use Redis/Memcached for API route caching.
+- Use revalidate in getStaticProps for ISR.
+
+```
+export async function getStaticProps() {
+  const data = await fetchData();
+  return {
+    props: { data },
+    revalidate: 60, // regenerate every 60s
+  };
+}
+```
 
 ### 7. Securing multi-tenant apps:
 
@@ -171,36 +205,67 @@ Implement HTTP caching via headers (`Cache-Control`, `ETag`). Use Redis or in-me
 * Authenticate via JWT or sessions
 * Protect SSR pages via `getServerSideProps`
 * Isolate tenant data in DB based on `orgId`
+### API Routes:
+- Authenticate requests using JWT, session cookies, or next-auth.
+- Use middleware to inject tenantId from subdomain or headers.
+- Sanitize and validate all input.
+
+### SSR Pages:
+- In getServerSideProps, check user session.
+- Redirect unauthorized users to login.
+- Filter DB queries by tenantId or orgId.
 
 ### 8. React Server Components (RSC):
 
 Server-only React components that never ship JavaScript to client. Used in App Router. Useful for rendering static or read-heavy components. Reduces bundle size.
+React Server Components (RSC):
+
+- Are used in Next.js App Router (app/ directory).
+- Don’t ship JavaScript to the browser.
+- Can reduce bundle size drastically.
 
 ### 9. Analytics, logging & monitoring:
 
 Use Sentry, LogRocket for real-time error tracking. Integrate GA4 with `next/script`. Track Core Web Vitals (LCP, FID, CLS) using Next.js telemetry and Lighthouse.
+1. Tools & Strategies:
+- Error Tracking: Sentry, LogRocket, or Bugsnag.
+- Analytics: GA4, Fathom, Mixpanel, or PostHog.
+- Performance: Lighthouse, Web Vitals (next/web-vitals).
+- Log custom events (e.g., CTA clicks, conversions).
+- Monitor Core Web Vitals (TTFB, LCP, CLS, FID) via Google Search Console.
 
-### 10. Debounced search hook:
+### 10. How would you build a custom hook for debounced search input with fetch & abort support?
 
 Use a custom `useEffect` with `setTimeout` and `AbortController`:
 
-```tsx
-useEffect(() => {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => {
-    fetch(`/api/search?q=${query}`, { signal: controller.signal })
-      .then(res => res.json())
-      .then(setResults);
-  }, 300);
-  return () => {
-    clearTimeout(timeout);
-    controller.abort();
-  };
-}, [query]);
 ```
+import { useState, useEffect } from 'react';
 
-Prevents flooding the API with unnecessary calls.
+export const useDebouncedFetch = (query, delay = 300) => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    if (!query) return;
 
----
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      fetch(`/api/search?q=${query}`, { signal: controller.signal })
+        .then(res => res.json())
+        .then(setData)
+        .catch(err => {
+          if (err.name !== 'AbortError') console.error(err);
+        });
+    }, delay);
 
-Let me know if you'd like this exported again as a full PDF, HTML, or split into flashcards or slides.
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query]);
+
+  return data;
+};
+
+```
+- Prevents flooding the API with unnecessary calls.
+- Cancels stale requests if the query changes quickly.
