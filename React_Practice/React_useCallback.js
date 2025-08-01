@@ -1,7 +1,8 @@
 /**
  * useCallback
  * 
- * A hook to memoize a function so it does not get re-created on every render, avoiding unnecessary re-renders of child components that depend on that function.
+ * A hook to memoize a function so it does not get re-created on every render, 
+ * avoiding unnecessary re-renders of child components that depend on that function.
  * 
  * handleClick is stable across renders due to useCallback.
  * So even when Parent re-renders (on count changes), Child will not re-render because its onClick prop stays the same.

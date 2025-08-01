@@ -2,8 +2,12 @@
  * useMemo
  * 
  * A hook to memoize the result of a computation to avoid expensive recalculations on every render.
+ * Expensive calculation or transformation (filtering, mapping, computing totals)
+ * Prevents recomputing on every render
+ * Helps in stable props for memoized components
+ * useMemo only runs when items change. Else, returns cached value.
  * 
- * useMemo memoizes the expensive calculation so it only reruns when num changes.
+ * useMemo memoizes the expensive calculation so it only runs when num changes.
  * Clicking “Increase Count” does not trigger the costly calculation again.
  * 
  * ✅ Real use case: calculating totals, sorting, filtering large arrays.

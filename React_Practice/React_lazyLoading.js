@@ -9,6 +9,11 @@
  * Code splitting reduces the initial JS bundle size, improving page speed.
  * 
  * ✅ Real use case: pages with heavy third-party components (charts, maps, etc.)
+ * 
+ * 🧠 Why Use Lazy Loading?
+ * Improves performance and load time
+ * Helps with code splitting
+ * Reduces initial JS bundle size
  */
 
 // HeavyChild.js
