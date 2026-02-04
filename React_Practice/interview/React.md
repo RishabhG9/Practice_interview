@@ -2,8 +2,10 @@
 
 [React Interview Questions 2025 Interview Bit](https://www.interviewbit.com/react-interview-questions/)
 
+[React handwritten Notes](https://www.linkedin.com/posts/akanksha-kushwaha-3b7867281_react-js-handwritten-notes-activity-7356335048398110720-xnUw?utm_source=share&utm_medium=member_desktop&rcm=ACoAADm6kncB8z_P1YXPG-AT3-lKu6Re_UGwmHM)
 
-## What is React?
+
+<!-- ## What is React?
 React is a front-end and open-source JavaScript library which is useful in developing user interfaces specifically for applications with a single page. It is helpful in building complex and reusable user interface(UI) components of mobile and web applications as it follows the component-based approach.
 
 - It supports server-side rendering.
@@ -27,4 +29,4 @@ A key is a special string attribute that needs to be included when using lists o
 - Keys should be given to array elements for providing a unique identity for each element.
 - Without keys, React does not understand the order or uniqueness of each element.
 - With keys, React has an idea of which particular element was deleted, edited, and added.
-- Keys are generally used for displaying a list of data coming from an API.
+- Keys are generally used for displaying a list of data coming from an API. -->

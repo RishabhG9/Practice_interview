@@ -24,18 +24,26 @@ function kSum(nums, target, k, start) {
     let left = start, right = nums.length - 1;
     while (left < right) {
       const sum = nums[left] + nums[right];
+
       if (sum == target) {
         res.push([nums[left], nums[right]]);
-        while (left < right && nums[left] == nums[left + 1]) left++;
-        while (left < right && nums[right] == nums[right - 1]) right--;
+
+        while (left < right && nums[left] == nums[left + 1])
+          left++;
+
+        while (left < right && nums[right] == nums[right - 1])
+          right--;
+
         left++;
         right--;
-      } else if (sum < target) left++;
+      } else if (sum < target)
+        left++;
       else right--;
     }
   } else {
     for (let i = start; i < nums.length - k + 1; i++) {
-      if (i > start && nums[i] == nums[i - 1]) continue;
+      if (i > start && nums[i] == nums[i - 1])
+        continue;
       const subsets = kSum(nums, target - nums[i], k - 1, i + 1);
       for (const subset of subsets) {
         res.push([nums[i], ...subset]);
